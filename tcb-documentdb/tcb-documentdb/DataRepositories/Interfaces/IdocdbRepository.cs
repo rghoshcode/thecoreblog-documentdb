@@ -10,8 +10,8 @@ namespace tcb_documentdb
     {
         Task<T> GetAsync(string id);
         Task<Document> CreateAsync(T value);
-        Task<T> UpdateAsync(string id, T value);
-        Task<T> DeleteAsync(string id);
+        Task<Document> UpdateAsync(string id, T value);
+        Task DeleteAsync(string id);
         void Initialize();
     }
 }

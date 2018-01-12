@@ -21,37 +21,39 @@ namespace tcb_documentdb.Controllers
             _repository.Initialize();
         }
 
-        // GET: api/values
+        // GET: api/blogs
         [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/values/5
+        // GET api/blogs/1
         [HttpGet("{id}")]
         public async Task<Blog> Get(string id)
         {
             return await _repository.GetAsync(id);
         }
 
-        // POST api/values
+        // POST api/blogs
         [HttpPost]
         public async Task<Document> Post([FromBody]Blog value)
         {
             return await _repository.CreateAsync(value);
         }
 
-        // PUT api/values/5
+        // PUT api/blogs/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public async Task<Document> Put(string id, [FromBody]Blog value)
         {
+            return await _repository.UpdateAsync(id, value);
         }
 
-        // DELETE api/values/5
+        // DELETE api/blogs/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async void Delete(string id)
         {
+            await _repository.DeleteAsync(id);
         }
     }
 }

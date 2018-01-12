@@ -85,9 +85,11 @@ namespace tcb_documentdb
 
         }
 
-        public Task<T> DeleteAsync(string id)
+        public async Task DeleteAsync(string id)
         {
-            throw new NotImplementedException();
+            await client.DeleteDocumentAsync(
+                UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id));
+            
         }
 
         public async Task<T> GetAsync(string id)
@@ -104,11 +106,22 @@ namespace tcb_documentdb
             }
         }
 
+       
         
 
-        public Task<T> UpdateAsync(string id, T value)
+
+        public async Task<Document> UpdateAsync(string id, T value)
         {
-            throw new NotImplementedException();
+            try
+            {
+
+                return await client.ReplaceDocumentAsync(
+                    UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id), value);
+            }
+            catch (DocumentClientException ex)
+            {
+                throw ex;
+            }
         }
     }
 }
