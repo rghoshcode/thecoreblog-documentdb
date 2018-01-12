@@ -106,8 +106,16 @@ namespace tcb_documentdb
             }
         }
 
-       
-        
+        public async Task<List<Document>> GetAllBlogs()
+        {
+            var blogs = new List<Blog>();
+
+            var db = (await client.ReadDatabaseFeedAsync()).Single(d => d.Id == DatabaseId);
+            var col = (await client.ReadDocumentCollectionFeedAsync(db.CollectionsLink)).Single(c => c.Id == CollectionId);
+            return client.CreateDocumentQuery(col.DocumentsLink).ToList();
+
+        }
+
 
 
         public async Task<Document> UpdateAsync(string id, T value)

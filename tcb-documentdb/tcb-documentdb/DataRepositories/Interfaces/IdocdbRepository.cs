@@ -12,6 +12,7 @@ namespace tcb_documentdb
         Task<Document> CreateAsync(T value);
         Task<Document> UpdateAsync(string id, T value);
         Task DeleteAsync(string id);
+        Task<List<Document>> GetAllBlogs();
         void Initialize();
     }
 }

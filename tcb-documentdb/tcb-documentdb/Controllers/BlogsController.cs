@@ -23,9 +23,9 @@ namespace tcb_documentdb.Controllers
 
         // GET: api/blogs
         [HttpGet]
-        public IEnumerable<string> Get()
+        public Task<List<Document>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _repository.GetAllBlogs();
         }
 
         // GET api/blogs/1
