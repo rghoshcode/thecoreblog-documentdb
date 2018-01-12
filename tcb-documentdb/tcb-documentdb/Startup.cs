@@ -32,6 +32,7 @@ namespace tcb_documentdb
             .AddAzureAdBearer(options => Configuration.Bind("AzureAd", options));
 
             services.AddMvc();
+            services.AddSingleton<IDocdbRepository<Blog>, DocdbRepository<Blog>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

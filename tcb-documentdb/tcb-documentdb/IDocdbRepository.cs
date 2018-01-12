@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace tcb_documentdb
 {
-    interface IDocdbRepository<T> where T:class
+    public interface IDocdbRepository<T> where T:class
     {
         Task<T> GetAsync(string id);
         Task<Document> CreateAsync(T value);

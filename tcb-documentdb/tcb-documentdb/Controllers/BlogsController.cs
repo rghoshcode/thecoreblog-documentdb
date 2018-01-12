@@ -2,16 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Azure.Documents;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace tcb_documentdb.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class BlogsController : Controller
     {
-        // GET api/values
+        private IDocdbRepository<Blog> _repository;
+        public BlogsController(IDocdbRepository<Blog> repository)
+        {
+            _repository = repository;
+            _repository.Initialize();
+        }
+
+        // GET: api/values
         [HttpGet]
         public IEnumerable<string> Get()
         {
@@ -20,30 +30,28 @@ namespace tcb_documentdb.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<Blog> Get(string id)
         {
-            return "value";
+            return await _repository.GetAsync(id);
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public async Task<Document> Post([FromBody]Blog value)
         {
-            // For more information on protecting this API from Cross Site Request Forgery (CSRF) attacks, see https://go.microsoft.com/fwlink/?LinkID=717803
+            return await _repository.CreateAsync(value);
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
-            // For more information on protecting this API from Cross Site Request Forgery (CSRF) attacks, see https://go.microsoft.com/fwlink/?LinkID=717803
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            // For more information on protecting this API from Cross Site Request Forgery (CSRF) attacks, see https://go.microsoft.com/fwlink/?LinkID=717803
         }
     }
 }
