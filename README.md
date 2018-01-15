@@ -1,6 +1,6 @@
 # thecoreblog-documentdb
 
-This project is an ASP.NET Core 2.0 API to store & manage (CRUD operations) Blog items of the follow structure on an Azure DocumentDB (NoSQL).
+This project is an ASP.NET Core 2.0 API to store & manage (CRUD operations) Blog items of the following structure on an Azure DocumentDB (NoSQL).
 
 
     public class Blog
