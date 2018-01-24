@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Azure.Documents;
+using Microsoft.AspNetCore.Cors;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace tcb_documentdb.Controllers
 {
     //[Authorize]
+    [EnableCors("MyPolicy")]
     [Route("api/[controller]")]
     public class BlogsController : Controller
     {

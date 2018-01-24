@@ -33,6 +33,12 @@ namespace tcb_documentdb
 
             services.AddMvc();
             services.AddSingleton<IDocdbRepository<Blog>, DocdbRepository<Blog>>();
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

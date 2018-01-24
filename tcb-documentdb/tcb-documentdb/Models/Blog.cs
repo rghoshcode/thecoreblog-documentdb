@@ -19,5 +19,22 @@ namespace tcb_documentdb
 
         [JsonProperty("content")]
         public string Content { get; set; }
+
+        [JsonProperty("comments")]
+        public List<Comment> Comments { get; set; }
+    }
+
+
+
+    public class Comment
+    {
+        [JsonProperty("content")]
+        public string Content { get; set; }
+
+        [JsonProperty("authorName")]
+        public string AuthorName { get; set; }
+
+        [JsonProperty("_ts")]
+        public string TimeStamp { get; set; }
     }
 }
